@@ -6,13 +6,12 @@
         <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/leaflet.css">
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         <style>
         #map {
-            width: 788px;
-            height: 662px;
+            width: 504px;
+            height: 526px;
         }
         </style>
         <title></title>
@@ -21,7 +20,7 @@
         <div id="map">
         </div>
         <script src="js/qgis2web_expressions.js"></script>
-        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
         <script src="js/leaflet.pattern.js"></script>
         <script src="js/leaflet-hash.js"></script>
@@ -29,87 +28,24 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
         <script src="data/TodoslosSectoresCRS_0.js"></script>
         <script>
-        var highlightLayer;
-        function highlightFeature(e) {
-            highlightLayer = e.target;
-
-            if (e.target.feature.geometry.type === 'LineString') {
-              highlightLayer.setStyle({
-                color: '#ffff00',
-              });
-            } else {
-              highlightLayer.setStyle({
-                fillColor: '#ffff00',
-                fillOpacity: 1
-              });
-            }
-            highlightLayer.openPopup();
-        }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[25.444494747061295,-100.73346734050874],[26.059147533270362,-100.00147174965987]]);
+        }).fitBounds([[25.80538985930315,-100.26308036526875],[25.81696308929307,-100.25081858345108]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
-        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
         function pop_TodoslosSectoresCRS_0(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                    if (typeof layer.closePopup == 'function') {
-                        layer.closePopup();
-                    } else {
-                        layer.eachLayer(function(feature){
-                            feature.closePopup()
-                        });
-                    }
-                },
-                mouseover: highlightFeature,
-            });
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Nombre'] !== null ? autolinker.link(feature.properties['Nombre'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Descripci�'] !== null ? autolinker.link(feature.properties['Descripci�'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['field_4'] !== null ? autolinker.link(feature.properties['field_4'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['field_5'] !== null ? autolinker.link(feature.properties['field_5'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['field_6'] !== null ? autolinker.link(feature.properties['field_6'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['field_7'] !== null ? autolinker.link(feature.properties['field_7'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['field_8'] !== null ? autolinker.link(feature.properties['field_8'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['field_9'] !== null ? autolinker.link(feature.properties['field_9'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['field_10'] !== null ? autolinker.link(feature.properties['field_10'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['nom'] !== null ? autolinker.link(feature.properties['nom'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['path'] !== null ? autolinker.link(feature.properties['path'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
@@ -128,7 +64,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(203,230,127,1.0)',
+                fillColor: 'rgba(86,202,108,1.0)',
                 interactive: true,
             }
                     break;
@@ -143,7 +79,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(216,49,138,1.0)',
+                fillColor: 'rgba(136,19,225,1.0)',
                 interactive: true,
             }
                     break;
@@ -158,7 +94,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(54,204,215,1.0)',
+                fillColor: 'rgba(211,111,194,1.0)',
                 interactive: true,
             }
                     break;
@@ -173,7 +109,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(91,139,236,1.0)',
+                fillColor: 'rgba(140,233,213,1.0)',
                 interactive: true,
             }
                     break;
@@ -188,7 +124,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(222,58,50,1.0)',
+                fillColor: 'rgba(203,200,106,1.0)',
                 interactive: true,
             }
                     break;
@@ -203,7 +139,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(237,190,97,1.0)',
+                fillColor: 'rgba(238,97,130,1.0)',
                 interactive: true,
             }
                     break;
@@ -218,7 +154,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(77,19,235,1.0)',
+                fillColor: 'rgba(40,160,230,1.0)',
                 interactive: true,
             }
                     break;
@@ -233,7 +169,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(221,125,236,1.0)',
+                fillColor: 'rgba(106,110,217,1.0)',
                 interactive: true,
             }
                     break;
@@ -248,7 +184,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(94,215,75,1.0)',
+                fillColor: 'rgba(206,150,117,1.0)',
                 interactive: true,
             }
                     break;
@@ -263,7 +199,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(95,232,159,1.0)',
+                fillColor: 'rgba(119,221,47,1.0)',
                 interactive: true,
             }
                     break;
@@ -283,18 +219,6 @@
         });
         bounds_group.addLayer(layer_TodoslosSectoresCRS_0);
         map.addLayer(layer_TodoslosSectoresCRS_0);
-        var osmGeocoder = new L.Control.Geocoder({
-            collapsed: true,
-            position: 'topleft',
-            text: 'Search',
-            title: 'Testing'
-        }).addTo(map);
-        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
-        .className += ' fa fa-search';
-        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
-        .title += 'Search for a place';
-        var baseMaps = {};
-        L.control.layers(baseMaps,{'Todos los Sectores CRS<br /><table><tr><td style="text-align: center;"><img src="legend/TodoslosSectoresCRS_0_Apodaca0.png" /></td><td>Apodaca</td></tr><tr><td style="text-align: center;"><img src="legend/TodoslosSectoresCRS_0_CopiadeSanPedroGarzaGarcía1.png" /></td><td>Copia de San Pedro Garza García</td></tr><tr><td style="text-align: center;"><img src="legend/TodoslosSectoresCRS_0_Escobedo2.png" /></td><td>Escobedo</td></tr><tr><td style="text-align: center;"><img src="legend/TodoslosSectoresCRS_0_García3.png" /></td><td>García</td></tr><tr><td style="text-align: center;"><img src="legend/TodoslosSectoresCRS_0_Guadalupe4.png" /></td><td>Guadalupe</td></tr><tr><td style="text-align: center;"><img src="legend/TodoslosSectoresCRS_0_Juárez5.png" /></td><td>Juárez</td></tr><tr><td style="text-align: center;"><img src="legend/TodoslosSectoresCRS_0_Monterrey6.png" /></td><td>Monterrey</td></tr><tr><td style="text-align: center;"><img src="legend/TodoslosSectoresCRS_0_SanNicolásdelosGarza7.png" /></td><td>San Nicolás de los Garza</td></tr><tr><td style="text-align: center;"><img src="legend/TodoslosSectoresCRS_0_SantaCatarina8.png" /></td><td>Santa Catarina</td></tr><tr><td style="text-align: center;"><img src="legend/TodoslosSectoresCRS_0_9.png" /></td><td></td></tr></table>': layer_TodoslosSectoresCRS_0,},{collapsed:false}).addTo(map);
         setBounds();
         </script>
     </body>
